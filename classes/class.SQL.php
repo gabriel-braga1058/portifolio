@@ -1,25 +1,69 @@
 <?php
 
-class conexao{
+require_once "class.Conexao.php";
 
-    public $conexao;
+
+class SQL
+
+{
+    public  $conexao_mysql;
 
     function __construct()
     {
-        $dbHost = 'Localhost';
-        $dbName = 'braga';
-        $dbUsername = 'root';
-        $dbPassword = '';
 
-        $mysql = mysqli_connect($dbHost, $dbUsername, $dbPassword, $dbName);
+        // echo 'depurar sql';exit;
 
-        if (!$mysql)
-        {
-            echo "Erro de conexâo";
-            exit;
+        $oConexao = new conexao();
+
+
+
+        $this->conexao_mysql = $oConexao->conexao;
+    }
+
+
+
+    function validaLogin($login, $senha)
+    {
+        $sql = "
+        SELECT * FROM
+        usuarios WHERE 
+        email = '$login' AND
+        senha = '$senha'";
+    
+        $res = mysqli_query($this->conexao_mysql, $sql);
+    
+        if ($res && mysqli_num_rows($res) > 0) {
+
+            $usuario = mysqli_fetch_assoc($res);
+
+            mysqli_free_result($res);
+
+            return $usuario;
+        } else {
+            echo 'Erro ao executar a consulta';
+            return false;
         }
-        
-        $this->conexao = $mysql;
+    }
+    
 
+
+    function cadastrar($nome_completo, $email, $username, $senha)
+    {
+        $sql = "
+        insert into usuarios 
+        (        
+                nome,
+                email,
+                senha,
+                data_criacao) 
+
+        VALUES ('$nome_completo', '$email','$username', '$senha')
+        ";
+
+        // echo $sql;
+        $res = mysqli_query($this->conexao_mysql, $sql);
+
+
+        return $res;
     }
 }
