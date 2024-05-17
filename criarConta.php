@@ -6,7 +6,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>formulario</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            padding-top: 20px;
+            background-color: #f8f9fa;
+        }
 
+        .register-form {
+            max-width: 400px;
+            margin: auto;
+            padding: 20px;
+            background-color: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+
+    </style>
 </head>
 
 <body>
@@ -38,6 +52,8 @@
             </div>
         </div>
     </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+
 
 </body>
 
